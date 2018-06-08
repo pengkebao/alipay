@@ -416,6 +416,12 @@ type GoodsDetailItem struct {
 	ShowUrl       string `json:"show_url"`
 }
 
+type TradePayExtendParams struct {
+	SysServiceProviderId string `json:"sys_service_provider_id"`
+	IndustryRefluxInfo string `json:"industry_reflux_info"`
+	CardType string `json:"card_type"`
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 // https://doc.open.alipay.com/docs/api.htm?spm=a219a.7395905.0.0.IGVsS6&docType=4&apiId=850
 type AliPayTradePay struct {
@@ -436,9 +442,10 @@ type AliPayTradePay struct {
 	OperatorId           string             `json:"operator_id"`            // 可选 商户操作员编号
 	StoreId              string             `json:"store_id"`               // 可选 商户门店编号
 	TerminalId           string             `json:"terminal_id"`            // 可选 商户机具终端编号
-	AliPayStoreId        string             `json:"alipay_store_id"`        // 可选 支付宝的店铺编号
+	//AliPayStoreId        string             `json:"alipay_store_id"`        // 可选 支付宝的店铺编号
 	TimeoutExpress       string             `json:"timeout_express"`        // 该笔订单允许的最晚付款时间，逾期将关闭交易。取值范围：1m～15d。m-分钟，h-小时，d-天，1c-当天（1c-当天的情况下，无论交易何时创建，都在0点关闭）。 该参数数值不接受小数点， 如 1.5h，可转换为 90m
-	AuthNo               string             `json:"auth_no"`                // 预授权号，预授权转交易请求中传入
+	//AuthNo               string             `json:"auth_no"`                // 预授权号，预授权转交易请求中传入
+	ExtendParams *TradePayExtendParams					//业务扩展参数
 }
 
 func (this AliPayTradePay) APIName() string {
